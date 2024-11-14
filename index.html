@@ -174,7 +174,7 @@ footer p{
                 <div style="display: none" id="div_questions">
                     <center>
                         <span id="span_questionText">Vamos encontrar as esferas do dragao</span>
-                        <input type="text" id="input_answer" placeholder="Sua Reposta"><br>
+                        <input type="text" oninput="tratar(this)" id="input_answer" placeholder="Sua Reposta"><br>
                         <button id="button_verify" onclick="verify()" class="button">Verificar</button>
                     </center>
 
@@ -196,23 +196,27 @@ footer p{
     var special_words = ['CPU', 'ULA', 'Registradores', 'RAM', 'ROM', 'EPROM', 'FLASH', 'Memória de Massa', 'DMA', 'CS', 'Adress Bus', 'Data Bus', 'I5', 'I7', 'Dual Core', 'Quad Core'];
 
 var questions_list = [
-    'Qual é a sigla para Central Process Unit?',
-    'Um circuto digital que realiza operações lógicas e aritméticas. Qual é o nome deste componente?',
-    'Tipo de memória que se encontra no topo da hierarquia de memória',
-    'Tipo de memória volátil que tem como nome Random Acess Memory. Qual é a sigla deste componente?',
-    'Tipo de memória não volátil que oferece dados apenas para leitura',
-    'Tipo de memória não volátil que precisa ter seu chip exposto a luz ultravioleta para apagar seu conteúdo',
-    'Tipo particular de EEPROM que mantém as informações armazenadas sem a necessidade de uma fonte de energia elétrica',
-    'Tipo de memória que precisa ter seu conteúdo copiado na RAM para poder ser executado pela CPU',
-    'Permite que periféricos acessem diretamente a RAM sem ocupar processamento',
-    'Também conhecido como Slave Select (SS). Usado para selecionar um ou um conjunto de circuitos que estão conectados no computador',
-    'Grupo de linhas ou trilhas usadas para se referir a um endereço físico na memória. O número de trilhas determina a quantidade de endereços na memória física',
-    'Também chamado de Memory Bus. É responsável para carregar os dados.',
-    'Modelo de processador desenvolvido pela Intel qu teve sua primeira versão lançada em setembro de 2009',
-    'Modelo de processador desenvolvido pela Intel qu teve sua primeira versão lançada em novembro de 2008',    
-    'Tipo de processador que possui dois processadores ou melhor dizendo ‘dois centros, núcleos ou cores de execução‘ no mesmo circuito integrado.  Cada core tem sua própria memória cash e controlador o que permite que funcione mais efetivamente do que um processador single',
-    'Segue o mesmo princípio de um dual-core, mas agora em teoria tem o dobro da capacidade de processamento'
+    'A mente do computador responsavel por realizar calculos e processar instruções',
+    'Parte presente no processador responsável por realizar operações matemáticas e lógicas',
+    'Memórias com curta capacidade, mas com rápido acesso que auxiliam o processador a realizar suas tarefas ',
+    'Memória temporária principal para programas em execução, copia os principais registros da memória secundária para mostrar ao usuário ',
+    'Memória permanente que guarda dados essenciais',
+    'memória de somente leitura programável apagável.',
+    'Memória rápida e volatíl, geralmente utilizada em pendriver, ssd e cartão de memória. ',
+    'Tipo de armazenamento usado para guardar grandes volumes de dados de forma permanente',
+    'Permite que dispositivos de hardware transfiram dados diretamente para a memória, sem usar a CPU',
+    'Um sinal que ativa um único componente em um circuito para comunicação ',
+    'O conjunto de linhas que carrega os endereços de memória para a CPU acessar',
+    'o conjunto de linhas que transporta dados entre a CPU e outros componentes ',
+    'Processador da intel com desempenho intermediário indicado para usuários comuns que teve sua primeira vesão feita em 2009.',
+    'Processador da intel com alto desempenho destinado para profissionais, gamers ou criadores de conteúdo que teve sua primeira versão feita em 2008. ',    
+    'Um tipo de processador que possui dois núcleos o que permite que sejam executadas duas tarefas simultaneamente ',
+    'Um tipo de processador que possui quatro núcles, consequentemente permite que sejam executadas quatro tarefas simultâneas'
 ];
+
+        function tratar(input) {
+            input.value = (input.value).toUpperCase();
+        }
 
 var filledCell = [2, 20, 38, 133, 134, 135, 59, 77, 95, 113, 131, 149,
     167, 185, 203, 221, 239, 257, 275, 59, 60, 61, 272, 290, 308, 236,
@@ -589,7 +593,7 @@ function verify() {
 
     if (answer != '') {
         // answer = answer.toLowerCase();
-        if (answer == special_words[cont_correctAnswer]) {
+        if (answer == special_words[cont_correctAnswer].toUpperCase()) {
             div_verifiedAnswer.classList.add('correctAnswer');
             div_verifiedAnswer.innerHTML = '<br>Resposta Correta!';
             cont_correctAnswer++;
